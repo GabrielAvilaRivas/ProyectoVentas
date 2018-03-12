@@ -24,7 +24,7 @@
 @endsection
 
 @section('content')
-    <div class="header header-filter" style="background-image: url('https://images.unsplash.com/photo-1423655156442-ccc11daa4e99?crop=entropy&dpr=2&fit=crop&fm=jpg&h=750&ixjsv=2.1.0&ixlib=rb-0.3.5&q=50&w=1450');">
+    <div class="header header-filter" style="background-image: url('img/fondo.jpg');">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
@@ -90,7 +90,7 @@
                         @foreach ($packages as $package)
                         <div class="col-md-4">
                             <div class="team-player">
-                                <img src="{{ $package->featured_image_url }}" alt="Thumbnail Image" class="img-raised img-circle">
+                                <img src="{{ $package->featured_image_url }}" alt="Thumbnail Image" class="img-raised img-circle" width="170" height="250">
                                 <h4 class="title">
                                     <a href="{{ url('/packages/'.$package->id) }}">{{ $package->name }}</a>
                                     <br>

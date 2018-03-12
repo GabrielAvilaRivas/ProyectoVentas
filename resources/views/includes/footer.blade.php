@@ -25,7 +25,7 @@
                 </ul>
             </nav>
             <div class="copyright pull-right">
-                &copy; 2018, Create Team G.J <i class="fa fa-heart heart"></i> by Creative Tim
+                &copy; 2018, Create Team G.J.B <i class="fa fa-heart heart"></i>
             </div>
         </div>
     </footer>
