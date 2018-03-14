@@ -26,6 +26,9 @@ Route::middleware(['auth','admin'])->prefix('admin')->namespace('Admin')->group(
 	Route::get('/packages/{id}/images/select/{image}', 'ImageController@select');  //destacar imagen
 });
 
+Route::get('phpinfo', function () {
+    return phpinfo();
+});
 
 // cr
 // ud
