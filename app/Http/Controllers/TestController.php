@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Package;
+use App\Category;
 
 class TestController extends Controller
 {
 	public function welcome()
 	{
-		$packages= Package::paginate(9);
-    	return view('welcome')->with(compact('packages'));
+		$categories= Category::has('packages')->get();
+    	return view('welcome')->with(compact('categories'));
 	}
 }

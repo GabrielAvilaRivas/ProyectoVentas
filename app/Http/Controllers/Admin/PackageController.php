@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Package;
+use App\Category;
 
 class PackageController extends Controller
 {
@@ -17,7 +18,8 @@ class PackageController extends Controller
 
       public function create()
     {
-		return view('admin.packages.create');	//formulario de registro
+        $categories = Category::orderBy('name')->get();
+		return view('admin.packages.create')->with(compact('categories'));	//formulario de registro
     }
 
       public function store(Request $request)
@@ -47,6 +49,7 @@ class PackageController extends Controller
     	$package->description = $request->input('description');
     	$package->price = $request->input('price');
     	$package->long_description = $request->input('long_description');
+        $package->category_id = $request->category_id;
     	$package->save();//insert into 
 
     	return redirect('/admin/packages');
@@ -55,9 +58,9 @@ class PackageController extends Controller
 
       public function edit($id)
     {
-    	//return "Mostras Aui el id $id";
+    	$categories = Category::orderBy('name')->get();
     	$package = Package::find($id);
-		return view('admin.packages.edit')->with(compact('package'));	//formulario de registro
+		return view('admin.packages.edit')->with(compact('package', 'categories'));	//formulario de registro
     }
 
       public function update(Request $request, $id)
@@ -86,6 +89,7 @@ class PackageController extends Controller
     	$package->description = $request->input('description');
     	$package->price = $request->input('price');
     	$package->long_description = $request->input('long_description');
+        $package->category_id = $request->category_id;
     	$package->save();//Update into 
 
     	return redirect('/admin/packages');

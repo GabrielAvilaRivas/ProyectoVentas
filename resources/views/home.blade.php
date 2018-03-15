@@ -5,7 +5,7 @@
 @section('body-class','package-page')
 
 @section('content')
-    <div class="header header-filter" style="background-image: url('img/fondo.jpg');">
+    <div class="header header-filter" style="background-image: url('img/fondo1.jpg');">
     </div>
 
     <div class="main main-raised">

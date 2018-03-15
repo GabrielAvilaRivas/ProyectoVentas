@@ -51,6 +51,10 @@
                             <a href="{{ url('/home')}}">Inicio</a>
                         </li>
                         @if (auth()->user()->admin)
+                         <li>
+                            <a href="{{ url('/admin/categories') }}">Gestionar Categorías</a>
+                        </li>
+
                         <li>
                             <a href="{{ url('/admin/packages') }}">Gestionar Paquetes</a>
                         </li>

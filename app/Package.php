@@ -30,4 +30,13 @@ class Package extends Model
         //defecto
         return '/images/packages/default.jpg';
     }
+
+
+    public function getCategoryNameAttribute()
+    {
+        if($this->category)
+            return $this->category->name;
+
+        return 'General';
+    }
 }

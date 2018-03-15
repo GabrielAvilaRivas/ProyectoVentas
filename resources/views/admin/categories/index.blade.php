@@ -1,7 +1,7 @@
 
 @extends('layouts.app')
 
-@section('title', 'Listado de Paquetes')
+@section('title', 'Listado de Categorías')
 
 @section('body-class','package-page')
 
@@ -12,11 +12,11 @@
     <div class="main main-raised">
         <div class="container">
             <div class="section text-center">
-                <h2 class="title">Listado de Paquetes</h2>
+                <h2 class="title">Listado de Categorías</h2>
                 <div class="team">
                     <div class="row">
-                    <a href="{{ url('/admin/packages/create') }}" class="btn btn-primary btn-round">
-                        <i class="material-icons">call_made</i> Agregar Paquete
+                    <a href="{{ url('/admin/categories/create') }}" class="btn btn-primary btn-round">
+                        <i class="material-icons">call_made</i> Nueva Categoría
                     </a>
                         <table class="table">
                             <thead>
@@ -24,33 +24,24 @@
                                     <th class="text-center">#</th>
                                     <th class="col-md-2 text-center">Nombre</th>
                                     <th class="col-md-5 text-center">Descripciòn</th>
-                                    <th class="text-center">Categorìa</th>
-                                    <th class="text-right">Precio</th>
                                     <th class="text-right">Opciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($packages as $package)
+                                @foreach($categories as $category)
                             <tr>
-                                <td class="text-center">{{ $package->id }}</td>
-                                <td>{{ $package->name }}</td>
-                                <td>{{ $package->description }}</td>
-                                <td>{{ $package->category_name }}</td>
-                                <td class="text-right">S/. {{ $package->price }}</td>
+                                <td class="text-center">{{ $category->id }}</td>
+                                <td>{{ $category->name }}</td>
+                                <td>{{ $category->descripcion }}</td>
                                 <td class="td-actions text-right">
-                                    
-                                    <form method="post" action="{{ url('/admin/packages/'.$package->id) }}">
+                                    <form method="post" action="{{ url('/admin/categories/'.$category->id) }}">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
-
-                                        <a href="{{ url('/packages/'.$package->id) }}" rel="tooltip" title="Ver Paquetes" class="btn btn-info btn-simple btn-xs" target="_blank">
+                                        <button type="button" rel="tooltip" title="Ver Categoría" class="btn btn-info btn-simple btn-xs">
                                         <i class="material-icons">visibility</i>
-                                        </a>
-                                    <a href="{{ url('/admin/packages/'.$package->id.'/edit') }}" rel="tooltip" title="Editar Paquete" class="btn btn-success btn-simple btn-xs">
+                                    </button>
+                                    <a href="{{ url('/admin/categories/'.$category->id.'/edit') }}" rel="tooltip" title="Editar Categoría" class="btn btn-success btn-simple btn-xs">
                                         <i class="fa fa-edit"></i>
-                                    </a>
-                                    <a href="{{ url('/admin/packages/'.$package->id.'/images') }}" rel="tooltip" title="Imagenes del Paquete" class="btn btn-warning btn-simple btn-xs">
-                                        <i class="fa fa-image"></i>
                                     </a>
                                        <button type="submit" rel="tooltip" title="Eliminar" class="btn btn-danger btn-simple btn-xs">
                                         <i class="fa fa-times"></i>
@@ -62,7 +53,7 @@
                             </tbody>
                         </table>
 
-                        {{ $packages->links() }}
+                        {{ $categories->links() }}
                     </div>
                 </div>
 

@@ -20,5 +20,4 @@ class PackageImage extends Model
 
     	return '/images/packages/' . $this->image;
     }
-
 }
