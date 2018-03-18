@@ -36,7 +36,7 @@ Route::middleware(['auth','admin'])->prefix('admin')->namespace('Admin')->group(
 });
 
 Route::get('phpinfo', function () {
-    return phpinfo();
+     phpinfo();
 });
 
 // cr
