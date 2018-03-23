@@ -9,7 +9,7 @@ use App\CartDetail;
 class CartDetailController extends Controller
 {
 
-    public function _construct()
+    public function __construct()
     {
         $this->middleware('auth');
     }
