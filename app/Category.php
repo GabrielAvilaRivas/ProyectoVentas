@@ -16,7 +16,13 @@ class Category extends Model
 
     public function getFeaturedImageUrlAttribute()
     {
-    	$featuredPackage = $this->packages()->first();
-    	return $featuredPackage->featured_image_url;
+        if ($this->image)
+            return '/images/categories/'.$this->image;
+        //else
+    	$firstPackage = $this->packages()->first();
+        if ($firstPackage)
+    	   return $firstPackage->featured_image_url;
+
+        return '/image/default.jpg';
     }
 }

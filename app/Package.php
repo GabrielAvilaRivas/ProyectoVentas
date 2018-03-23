@@ -28,7 +28,7 @@ class Package extends Model
         }
 
         //defecto
-        return '/images/packages/default.jpg';
+        return '/images/default.jpg';
     }
 
 

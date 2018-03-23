@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Category;
+use File;
 
 class CategoryController extends Controller
 {
@@ -35,9 +36,20 @@ class CategoryController extends Controller
     	];
     	$this->validate($request, $rules,$messages);
 
-    	//registrar en la Bd
-    	//dd($request->all());
-    	Category::create($request->all()); // mass assignment
+    	$category = Category::create($request->only('name','descripcion')); // mass assignment
+
+        if ($request->hasfile('image')) {
+            $file = $request->file('image');
+            $path = public_path() . '/images/categories';
+            $fileName = uniqid().'-'.$file->getClientOriginalName();
+            $moved = $file->move($path, $fileName);
+
+            //update category
+            if ($moved) {
+                $category->image = $fileName;
+                $category->save(); // UPDATE
+            }
+        }
 
     	return redirect('/admin/categories');
     }
@@ -66,7 +78,26 @@ class CategoryController extends Controller
     	$this->validate($request, $rules,$messages);
     	//registrar el nuevo Producto en la Bd
     	//dd($request->all());
-    	$category->update($request->all());
+    	$category->update($request->only('name', 'descripcion'));
+
+        if ($request->hasfile('image')) {
+            $file = $request->file('image');
+            $path = public_path() . '/images/categories';
+            $fileName = uniqid().'-'.$file->getClientOriginalName();
+            $moved = $file->move($path, $fileName);
+
+            //update category
+            if ($moved) {
+                $previousPath = $path. '/' . $category->image;
+
+                $category->image = $fileName;
+                $saved = $category->save(); // UPDATE
+
+                if ($saved)
+                    File::delete($previousPath);
+
+            }
+        }
 
     	return redirect('/admin/categories');
     }
