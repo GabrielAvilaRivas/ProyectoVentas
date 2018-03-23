@@ -4,6 +4,9 @@ Route::get('/','TestController@welcome');
 
 Auth::routes();
 
+Route::get('/search', 'SearchController@show'); 
+Route::get('/packages/json', 'SearchController@data');
+
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/packages/{id}', 'PackageController@show'); 
 Route::get('/categories/{category}', 'CategoryController@show'); 
@@ -35,9 +38,9 @@ Route::middleware(['auth','admin'])->prefix('admin')->namespace('Admin')->group(
 	Route::delete('/categories/{category}', 'CategoryController@destroy'); 	//formulario eliminar
 });
 
-Route::get('phpinfo', function () {
-     phpinfo();
-});
+//Route::get('phpinfo', function () {
+//    phpinfo();
+//});
 
 // cr
 // ud
